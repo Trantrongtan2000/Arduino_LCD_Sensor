@@ -4,6 +4,7 @@
 int cambien = 10;
 int relay = 7;
 int relay2=6;
+int relay3=4;
 int gas=4;
 const int gasPin = A0;
  
@@ -21,6 +22,8 @@ void setup() {
 pinMode(cambien,INPUT);
 pinMode(relay,OUTPUT);
 pinMode(relay2,OUTPUT);
+pinMode(relay3,OUTPUT);
+
 
 
   dht.begin();    // Khởi động cảm biến
@@ -80,6 +83,23 @@ String da="Do am: "+String(round(h))+"%";
     delay(1000);
     lcd.clear();
 
+  if (round(t)>33) {
+    
+    lcd.setCursor(0, 0);
+    lcd.print("Nhiet do >33");
+    digitalWrite(relay3,HIGH);
+    lcd.setCursor(0, 1);
+    lcd.print("Quat dang bat");
+    
+  } else {
+    lcd.setCursor(0, 0);
+    lcd.print("Nhiet do <33");
+    digitalWrite(relay3,LOW);
+    lcd.setCursor(0, 1);
+    lcd.print("Quat dang tat");
+  } 
+    delay(1000);
+    lcd.clear();
     
     lcd.setCursor(0, 0);       
     lcd.print(nd);
